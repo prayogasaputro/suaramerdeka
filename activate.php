@@ -1,9 +1,9 @@
 <?php
 	include('conn.php');
 	session_start();
-	if(isset($_GET['code'])){
-	$user=$_GET['uid'];
-	$code=$_GET['code'];
+	if(isset(FILTER_INPUT(INPUT_GET, 'code'))){
+	FILTER_INPUT(INPUT_GET, 'uid');
+	FILTER_INPUT(INPUT_GET, 'code');
 
 	$query=mysqli_query($conn,"select * from user where userid='$user'");
 	$row=mysqli_fetch_array($query);
