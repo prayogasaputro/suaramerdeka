@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+FILTER_INPUT(INPUT_SESSION,'username') {
    header('location:index.php'); 
 } else { 
-   $username = $_SESSION['username']; 
+   FILTER_INPUT(INPUT_SESSION,'username'); 
 }
 ?>
 
@@ -98,19 +98,19 @@ include("koneksi.php");
         $sql = "SELECT * FROM iklan WHERE NOT status_iklan = '$kirim'";
         $query = mysqli_query($db, $sql);
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan']."</td>";
-            echo "<td>".$iklan['bayar']."</td>";
-            echo "<td>".$iklan['status_iklan']."</td>";
+            <?= "<td>".$iklan['iklan']."</td>">?;
+            <?= "<td>".$iklan['bayar']."</td>">?;
+            <?= "<td>".$iklan['status_iklan']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='cek_bukti.php?unik=".$iklan['unik']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Bukti</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='tidak_lolos.php?unik=".$iklan['unik']."' class='btn btn-danger' role='button' aria-pressed='true'>Tidak Lolos</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='iklan_lolos.php?unik=".$iklan['unik']."' class='btn btn-success' role='button' aria-pressed='true'>Lolos</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='cek_bukti.php?unik=".$iklan['unik']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Bukti</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='tidak_lolos.php?unik=".$iklan['unik']."' class='btn btn-danger' role='button' aria-pressed='true'>Tidak Lolos</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='iklan_lolos.php?unik=".$iklan['unik']."' class='btn btn-success' role='button' aria-pressed='true'>Lolos</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
@@ -144,14 +144,14 @@ include("koneksi.php");
         $sql = "SELECT * FROM user";
         $query = mysqli_query($db, $sql);
         while($user = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$user['email']."</td>";
+            <?= "<td>".$user['email']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='lihat_iklan.php?userid=".$user['userid']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Iklan</a></br/>";
+            <?= "<td>">?;
+            <?= "<a href='lihat_iklan.php?userid=".$user['userid']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Iklan</a></br/>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
