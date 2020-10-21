@@ -1,15 +1,15 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+FILTER_INPUT(INPUT_SESSION, 'username') {
    header('location:index.php'); 
 } else { 
-   $username = $_SESSION['username']; 
+   FILTER_INPUT(INPUT_SESSION, 'username'); 
 }
 
-if( isset($_GET['userid']) ){
+FILTER_INPUT(INPUT_GET, 'userid'){
 
     // ambil id dari query string
-    $id= $_GET['userid'];
+    FILTER_INPUT(INPUT_GET, 'userid');
 }
 
 ?>
@@ -101,19 +101,19 @@ include("koneksi.php");
         $sql = "SELECT * FROM iklan2 WHERE NOT status_iklan2 = '$kirim' AND userid ='$id'";
         $query = mysqli_query($db, $sql);
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan2']."</td>";
-            echo "<td>".$iklan['bayar2']."</td>";
-            echo "<td>".$iklan['status_iklan2']."</td>";
+            <?= "<td>".$iklan['iklan2']."</td>">?;
+            <?= "<td>".$iklan['bayar2']."</td>">?;
+            <?= "<td>".$iklan['status_iklan2']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='cek_bukti2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Bukti</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='tidak_lolos2.php?unik2=".$iklan['unik2']."' class='btn btn-danger' role='button' aria-pressed='true'>Tidak Lolos</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='iklan_lolos2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>Lolos</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='cek_bukti2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>Lihat Bukti</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='tidak_lolos2.php?unik2=".$iklan['unik2']."' class='btn btn-danger' role='button' aria-pressed='true'>Tidak Lolos</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin dengan keputusan ini?');\" href='iklan_lolos2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>Lolos</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
