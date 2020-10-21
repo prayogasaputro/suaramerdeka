@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:index.php');
   }
   else {
-  	$id = $_SESSION['id'];
+  	FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -101,18 +101,18 @@ include("koneksi.php");
         $query = mysqli_query($db, $sql);
 
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan2']."</td>";
-            echo "<td>".$iklan['tanggal2']."</td>";
+            <?= "<td>".$iklan['iklan2']."</td>">?;
+            <?= "<td>".$iklan['tanggal2']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='edit_iklan2.php?id2=".$iklan['id2']."' class='btn btn-warning' role='button' aria-pressed='true'>Edit</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin ingin menghapus iklan ini?');\" href='hapus_iklan2.php?id2=".$iklan['id2']."' class='btn btn-danger' role='button' aria-pressed='true'>Hapus</a></br/>";
-             echo "</br/><a onClick=\"javascript: return confirm('Apakah data iklan sudah benar? Anda tidak dapat mengubah iklan setelah menekan tombol OK.');\" href='iklan_fix.php?unik=".$iklan['userid']."' class='btn btn-success' role='button' aria-pressed='true'>Selesai</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='edit_iklan2.php?id2=".$iklan['id2']."' class='btn btn-warning' role='button' aria-pressed='true'>Edit</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin ingin menghapus iklan ini?');\" href='hapus_iklan2.php?id2=".$iklan['id2']."' class='btn btn-danger' role='button' aria-pressed='true'>Hapus</a></br/>">?;
+             <?= "</br/><a onClick=\"javascript: return confirm('Apakah data iklan sudah benar? Anda tidak dapat mengubah iklan setelah menekan tombol OK.');\" href='iklan_fix.php?unik=".$iklan['userid']."' class='btn btn-success' role='button' aria-pressed='true'>Selesai</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
