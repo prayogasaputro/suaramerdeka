@@ -24,7 +24,7 @@ include("koneksi.php");
         $sql = "SELECT * FROM iklan2 WHERE unik2 = '$unik'";
         $query = mysqli_query($db, $sql);
 
-        while($iklan = mysqli_fetch_array($query)){
+        while($query->resoult_array()){
 
             $ik= $iklan['iklan2'];
             $tanggal= $iklan['tanggal2'];
