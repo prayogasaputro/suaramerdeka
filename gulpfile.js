@@ -59,8 +59,8 @@ function modules() {
   var fontAwesomeWebfonts = gulp.src("./node_modules/@fortawesome/fontawesome-free/webfonts/**/*")
     .pipe(gulp.dest("./vendor/fontawesome-free/webfonts"));
   // jQuery Easing
-  var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
-    .pipe(gulp.dest('./vendor/jquery-easing'));
+  var jqueryEasing = gulp.src("./node_modules/jquery.easing/*.js")
+    .pipe(gulp.dest("./vendor/jquery-easing"));
   // Magnific Popup
   var magnificPopup = gulp.src("./node_modules/magnific-popup/dist/*")
     .pipe(gulp.dest("./vendor/magnific-popup"));
