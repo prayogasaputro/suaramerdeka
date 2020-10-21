@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION,'id'){
     header('location:index.php');
   }
   else {
-    $id = $_SESSION['id'];
+    FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -15,10 +15,10 @@ include('conn.php');
 
 include("koneksi.php");
 
-if( isset($_GET['unik2']) ){
+FILTER_INPUT(INPUT_GET, 'unik2'){
 
     // ambil id dari query string
-    $unik= $_GET['unik2'];
+    FILTER_INPUT(INPUT_GEt, 'unik2');
 }
 
 include("koneksi.php");
@@ -166,19 +166,19 @@ include("koneksi.php");
         $query = mysqli_query($db, $sql);
 
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan2']."</td>";
-            echo "<td>".$iklan['tanggal2']."</td>";
-            echo "<td>".$iklan['tgl_invoice2']."</td>";
-            echo "<td>".$iklan['bayar2']."</td>";
+            <?= "<td>".$iklan['iklan2']."</td>">?;
+            <?= "<td>".$iklan['tanggal2']."</td>">?;
+            <?= "<td>".$iklan['tgl_invoice2']."</td>">?;
+            <?= "<td>".$iklan['bayar2']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='invoice2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>INVOICE</a></br/>";
-             echo "</br/><a href='bukti_bayar2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>BUKTI BAYAR</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='invoice2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>INVOICE</a></br/>">?;
+             <?= "</br/><a href='bukti_bayar2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>BUKTI BAYAR</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
