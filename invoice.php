@@ -2,10 +2,10 @@
 
 include("koneksi.php");
 
-if( isset($_GET['unik']) ){
+FILTER_INPUT(INPUT_GET,'unik'){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    FILTER_INPUT(INPUT_GET,'unik');
 }
 
 include("koneksi.php");
@@ -119,8 +119,8 @@ $total="Rp110.000,00";
     </tr>
   <tbody>
     <tr>
-      <td><?php echo $unik;?></td>
-      <td><?php echo $tgl;?></td>
+      <td><?php <?= $unik>?;?></td>
+      <td><?php <?= $tgl>?;?></td>
     </tr>
   </tbody>
 </table>
@@ -137,9 +137,9 @@ $total="Rp110.000,00";
 	</tbody>
 </table>
 
-<font size = "3" color="black"><?php echo $nama;?></font><br>
-<font size = "3" color="black"><?php echo $alamat;?></font><br>
-<font size = "3" color="black"><?php echo $email;?></font><br>
+<font size = "3" color="black"><?php <?= $nama>?;?></font><br>
+<font size = "3" color="black"><?php <?= $alamat>?;?></font><br>
+<font size = "3" color="black"><?php <?= $email>?;?></font><br>
 <br>
 <table class="table table-sm">
   <thead class="thead-dark">
@@ -155,13 +155,13 @@ $total="Rp110.000,00";
   </thead>
   <tbody>
     <tr>
-      <td><?php echo $ik;?></td>
-      <td><?php echo $tanggal;?></td>
-      <td><?php echo $jml_karakter;?></td>
-      <td><?php echo $baris;?></td>
-      <td><?php echo $bayar;?></td>
-      <td><?php echo $pajak;?></td>
-      <td><?php echo $total;?></td>
+      <td><?php <?= $ik>?;?></td>
+      <td><?php <?= $tanggal>?;?></td>
+      <td><?php <?= $jml_karakter>?;?></td>
+      <td><?php <?= $baris>?;?></td>
+      <td><?php <?= $bayar>?;?></td>
+      <td><?php <?= $pajak>?;?></td>
+      <td><?php <?= $total>?;?></td>
     </tr>
   </tbody>
 </table>
