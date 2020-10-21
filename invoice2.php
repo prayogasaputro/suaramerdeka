@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:index.php');
   }
   else {
-    $id = $_SESSION['id'];
+    FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -15,10 +15,10 @@ include('conn.php');
 
 include("koneksi.php");
 
-if( isset($_GET['unik2']) ){
+FILTER_INPUT(INPUT_GET, 'unik2'){
 
     // ambil id dari query string
-    $unik= $_GET['unik2'];
+    FILTER_INPUT(INPUT_GET, 'unik2');
 }
 
 include("conn.php");
