@@ -3,16 +3,16 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION,'id'){
     header('location:index.php');
   }
   else {
-  	$id = $_SESSION['id'];
+  	FILTER_INPUT(INPUT_SESSION,'id');
   }
 ?>
 
 <?php
-if( isset($_GET['unik2']) ){
+FILTER_INPUT(INPUT_GET,'unik2'){
 
     // ambil id dari query string
     $unik2= $_GET['unik2'];
