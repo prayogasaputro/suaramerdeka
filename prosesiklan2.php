@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION,'id'){
     header('location:index.php');
   }
   else {
-  	$id = $_SESSION['id'];
+  	FILTER_INPUT(INPUT_SESSION,'id');
   }
 ?>
 
@@ -15,10 +15,10 @@ include('conn.php');
 date_default_timezone_set("Asia/Jakarta");
 $date = date("Y-m-d");
 
-if($_REQUEST['tanggal2'] <= $date){
-    echo '<script language="javascript">';
-    echo 'alert("Masukkan tanggal dengan benar")';
-    echo '</script>';
+FILTER_INPUT(INPUT_REQUEST,'tanggal2') <= $date){
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Masukkan tanggal dengan benar")'>?;
+    <?= '</script>'>?;
  }
 
 else {
@@ -37,16 +37,16 @@ $unik2 = random(4);
 $unik = mt_rand(100,999);
 
   include "koneksi.php";
-  $iklan2  = $_REQUEST['iklan2'];
-  $tanggal2  = $_REQUEST['tanggal2'];
+  FILTER_INPUT(INPUT_REQUEST,'iklan2');
+  FILTER_INPUT(INPUT_REQUEST,'tanggal2');
   $status2 = "Kirim bukti pembayaran terlebih dahulu";
 
   $mysqli  = "INSERT INTO iklan2 (iklan2, tanggal2, status_iklan2, userid, unik2) VALUES ('$iklan2', '$tanggal2', '$status2', '$id', '$unik$unik2')";
   $result  = mysqli_query($db, $mysqli);
   if ($result) {
-    echo "";
+    <?= "">?;
   } else {
-    echo "Proses gagal, input iklan tidak sesuai";
+    <?= "Proses gagal, input iklan tidak sesuai">?;
   }
   
   mysqli_close($db);
@@ -143,18 +143,18 @@ include("koneksi.php");
         $query = mysqli_query($db, $sql);
 
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan2']."</td>";
-            echo "<td>".$iklan['tanggal2']."</td>";
+            <?= "<td>".$iklan['iklan2']."</td>">?;
+            <?= "<td>".$iklan['tanggal2']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='edit_iklan2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>Edit</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin ingin menghapus iklan ini?');\" href='hapus_iklan2.php?unik2=".$iklan['unik2']."' class='btn btn-danger' role='button' aria-pressed='true'>Hapus</a></br/>";
-            echo "</br/><a onClick=\"javascript: return confirm('Apakah data iklan sudah benar? Anda tidak dapat mengubah iklan setelah menekan tombol OK.');\" href='iklan_fix2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>Selesai</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='edit_iklan2.php?unik2=".$iklan['unik2']."' class='btn btn-warning' role='button' aria-pressed='true'>Edit</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah anda yakin ingin menghapus iklan ini?');\" href='hapus_iklan2.php?unik2=".$iklan['unik2']."' class='btn btn-danger' role='button' aria-pressed='true'>Hapus</a></br/>">?;
+            <?= "</br/><a onClick=\"javascript: return confirm('Apakah data iklan sudah benar? Anda tidak dapat mengubah iklan setelah menekan tombol OK.');\" href='iklan_fix2.php?unik2=".$iklan['unik2']."' class='btn btn-success' role='button' aria-pressed='true'>Selesai</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
