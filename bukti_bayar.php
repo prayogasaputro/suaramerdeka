@@ -51,12 +51,12 @@ if ($tgl <= $sekarang){
 
 else{
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD' == "POST"){
 
 	include('koneksi.php');
 	$fileinfo=PATHINFO($_FILES["image"]["name"]);
 	$newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-	move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
+	move_uploaded_file(FILTER_INPUT(INPUT_FILES, "image", "tmp_name", "upload/" . $newFilename));
 	$location="upload/" . $newFilename;
  
 	mysqli_query($db,"insert into image_tb (img_location, unik) values ('$location', '$unik')");
