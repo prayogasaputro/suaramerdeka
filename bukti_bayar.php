@@ -2,10 +2,10 @@
 
 include("koneksi.php");
 
-if( isset($_GET['unik']) ){
+if( isset(FILTER_INPUT(INPUT_GET, 'unik') )){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik');
 }
 
 include("koneksi.php");
@@ -14,9 +14,9 @@ include("koneksi.php");
 
         if (mysqli_fetch_array($query2) > 0){
 
-    echo '<script language="javascript">';
-    echo 'alert("Anda tidak bisa mengupload bukti pembayaran lagi. Kembali ke halaman sebelumnya.")';
-    echo '</script>';
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Anda tidak bisa mengupload bukti pembayaran lagi. Kembali ke halaman sebelumnya.")'>?;
+    <?= '</script>'>?;
 }
 
 else {
@@ -39,9 +39,9 @@ include("koneksi.php");
 date_default_timezone_set("Asia/Jakarta");
 $sekarang= date('Y-m-d H:i:s',  time() - (60 * 60));
 if ($tgl <= $sekarang){
-    echo '<script language="javascript">';
-    echo 'alert("Iklan sudah kadaluarsa.")';
-    echo '</script>';
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Iklan sudah kadaluarsa.")'>?;
+    <?= '</script>'>?;
     ?>
 <center>
 <a href="index.php#services">Pasang iklan kembali</a>
@@ -142,7 +142,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	<form method="POST" action="" enctype="multipart/form-data" onsubmit="return confirm('Apakah bukti pembayaran sudah benar? Anda tidak bisa mengupload bukti pembayaran lagi setelah menekan tombol OK.');">
 	<label>Gambar :&nbsp;</label><input type="file" name="image" required="true">
 	<button type="submit" class="btn btn-success">Kirim</button>
-	<input type="hidden" name="unik" value="<?php echo $unik; ?>">
+	<input type="hidden" name="unik" value="<?php <?= $unik>?; ?>">
 	</form>
 	</div>
     </div>
