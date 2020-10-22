@@ -2,10 +2,10 @@
 
 include("koneksi.php");
 
-if( isset($_GET['unik']) ){
+FILTER_INPUT(INPUT_GET, 'unik'){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik');
 }
 
 include("koneksi.php");
@@ -24,9 +24,9 @@ include("koneksi.php");
 
 if (!is_null($tgl)){
 
-    echo '<script language="javascript">';
-    echo 'alert("Anda tidak bisa mengedit iklan lagi. Karena INVOICE sudah keluar. Kembali ke halaman sebelumnya.")';
-    echo '</script>';
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Anda tidak bisa mengedit iklan lagi. Karena INVOICE sudah keluar. Kembali ke halaman sebelumnya.")'>?;
+    <?= '</script>'>?;
   
 }
 else {
@@ -113,33 +113,33 @@ else {
                          <div class="form-group">
                             <label class="col-md-4 control-label">Nama Lengkap</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="fullName" placeholder="Isikan nama lengkap anda" class="form-control" required="true" value="<?php echo $nama; ?>" type="text"></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="fullName" placeholder="Isikan nama lengkap anda" class="form-control" required="true" value="<?php <?= $nama>?; ?>" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
                             <label class="col-md-4 control-label">Alamat Lengkap</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="addressLine1" placeholder="Isikan alamat lengkap anda" class="form-control" required="true" value="<?php echo $alamat; ?>" type="text"></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="addressLine1" placeholder="Isikan alamat lengkap anda" class="form-control" required="true" value="<?php <?= $alamat>?; ?>" type="text"></div>
                             </div>
                          </div>
                          <div class="form-group">
                             <label class="col-md-4 control-label">Email</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Isikan email anda" class="form-control" required="true" value="<?php echo $email; ?>" type="email"></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Isikan email anda" class="form-control" required="true" value="<?php <?= $email>?; ?>" type="email"></div>
                             </div>
                           <div class="form-group">
                             <label class="col-md-4 control-label">Isi Iklan</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><textarea rows = "10" cols = "32" name = "iklan" minlength="33" maxlength="320" placeholder="Isikan iklan anda" class="form-control" required="true" type="text" style="resize: none;"><?php echo $ik; ?></textarea></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><textarea rows = "10" cols = "32" name = "iklan" minlength="33" maxlength="320" placeholder="Isikan iklan anda" class="form-control" required="true" type="text" style="resize: none;"><?php <?= $ik>?; ?></textarea></div>
                             </div>
                          </div>
                          <div class="form-group">
                             <label class="col-md-4 control-label">Tanggal Tayang</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="date" name="tanggal" min="now" class="form-control" required="true" value="<?php echo $tanggal; ?>"></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="date" name="tanggal" min="now" class="form-control" required="true" value="<?php <?= $tanggal>?; ?>"></div>
                             </div>
                          </div>
-                         <input type="hidden" name="unik" value="<?php echo $unik; ?>">
+                         <input type="hidden" name="unik" value="<?php <?= $unik>?; ?>">
                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>Kirim</button>
                       </fieldset>
                    </form>
