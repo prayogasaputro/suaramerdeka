@@ -1,17 +1,17 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+FILTER_INPUT(INPUT_SESSION, 'username'){
    header('location:index.php'); 
 } else { 
-   $username = $_SESSION['username']; 
+   $username = FILTER_INPUT(INPUT_SESSION, 'username'); 
 }
 ?>
 
 <?php
-if( isset($_GET['unik']) ){
+FILTER_INPUT(INPUT_GET, 'unik'){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik');
 }
 ?>
 
