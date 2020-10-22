@@ -3,7 +3,7 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:index.php');
   }
   else {
@@ -12,10 +12,10 @@ include('conn.php');
 ?>
 
 <?php
-if( isset($_GET['unik2']) ){
+FILTER_INPUT(INPUT_GET, 'unik2'){
 
     // ambil id dari query string
-    $unik= $_GET['unik2'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik2');
 }
 ?>
 
@@ -33,9 +33,9 @@ include("koneksi.php");
 
 if (!is_null($tgl)){
 
-    echo '<script language="javascript">';
-    echo 'alert("Anda tidak bisa mengedit iklan lagi. Karena INVOICE sudah keluar. Kembali ke halaman sebelumnya.")';
-    echo '</script>';
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Anda tidak bisa mengedit iklan lagi. Karena INVOICE sudah keluar. Kembali ke halaman sebelumnya.")'>?;
+    <?= '</script>'>?;
   
 }
 else {
@@ -122,16 +122,16 @@ else {
                           <div class="form-group">
                             <label class="col-md-4 control-label">Isi Iklan</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><textarea rows = "10" cols = "32" name = "iklan2" minlength="33" maxlength="320" placeholder="Isikan iklan anda" class="form-control" required="true" type="text" style="resize: none;"><?php echo $ik; ?></textarea></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><textarea rows = "10" cols = "32" name = "iklan2" minlength="33" maxlength="320" placeholder="Isikan iklan anda" class="form-control" required="true" type="text" style="resize: none;"><?php <?= $ik>?; ?></textarea></div>
                             </div>
                          </div>
                          <div class="form-group">
                             <label class="col-md-4 control-label">Tanggal Tayang</label>
                             <div class="col-md-8 inputGroupContainer">
-                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="date" name="tanggal2" min="now" class="form-control" required="true" value="<?php echo $tanggal; ?>"></div>
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="date" name="tanggal2" min="now" class="form-control" required="true" value="<?php <?= $tanggal>?; ?>"></div>
                             </div>
                          </div>
-                         <input type="hidden" name="unik2" value="<?php echo $unik; ?>">
+                         <input type="hidden" name="unik2" value="<?php <?= $unik>?; ?>">
                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>Kirim</button>
                       </fieldset>
                    </form>
