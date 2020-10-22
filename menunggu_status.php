@@ -2,10 +2,10 @@
 
 include("koneksi.php");
 
-if( isset($_GET['unik']) ){
+FILTER_INPUT(INPUT_GET, 'unik'){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik');
 }
 
 ?>
@@ -104,11 +104,11 @@ include("koneksi.php");
         $query = mysqli_query($db, $sql);
 
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan']."</td>";
-            echo "<td>".$iklan['tanggal']."</td>";
-            echo "<td>".$iklan['status_iklan']."</td>";
+            <?= "<td>".$iklan['iklan']."</td>">?;
+            <?= "<td>".$iklan['tanggal']."</td>">?;
+            <?= "<td>".$iklan['status_iklan']."</td>">?;
         }
     ?>
 
