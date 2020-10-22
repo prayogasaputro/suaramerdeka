@@ -49,7 +49,7 @@ include("koneksi.php");
 date_default_timezone_set("Asia/Jakarta");
 $sekarang= date('Y-m-d H:i:s',  time() - (60 * 60));
 if ($tgl <= $sekarang){
-    echo '<script language="javascript">';
+    <?= '<script language="javascript">'>?;
     <?= 'alert("Iklan sudah kadaluarsa.")'>?;
     <?= '</script>'>?;
     ?>
