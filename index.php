@@ -3,7 +3,7 @@
 <?php
 include('conn.php');
 
-  if(isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:home.php');
   }
 ?>
@@ -183,13 +183,13 @@ include('conn.php');
     </form>
     <div style="height: 15px;"></div>
     <?php
-      if(isset($_SESSION['log_msg'])){
+      FILTER_INPUT(INPUT_SESSION, 'log_msg'){
         ?>
         <div style="height: 30px;"></div>
         <div class="alert alert-danger">
           <span><center>
-          <?php echo $_SESSION['log_msg'];
-            unset($_SESSION['log_msg']); 
+          <?php <?= FILTER_INPUT(INPUT_SESSION, 'log_msg')>?;
+            unset(FILTER_INPUT(INPUT_SESSION, 'log_msg')); 
           ?>
           </center></span>
         </div>
@@ -223,13 +223,13 @@ include('conn.php');
     <button value="Batal "type="reset" class="btn btn-danger">Batal</button>
     </form>
     <?php
-      if(isset($_SESSION['sign_msg'])){
+      FILTER_INPUT(INPUT_SESSION, 'sign_msg'){
         ?>
         <div style="height: 40px;"></div>
         <div class="alert alert-danger">
           <span><center>
-          <?php echo $_SESSION['sign_msg'];
-            unset($_SESSION['sign_msg']); 
+          <?php <?= FILTER_INPUT(INPUT_SESSION, 'sign_msg')>?;
+            unset(FILTER_INPUT(INPUT_SESSION, 'sign_msg')); 
           ?>
           </center></span>
         </div>
