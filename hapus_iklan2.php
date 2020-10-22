@@ -15,7 +15,7 @@ include('conn.php');
 FILTER_INPUT(INPUT_GET,'unik2'){
 
     // ambil id dari query string
-    $unik2= $_GET['unik2'];
+    $unik2= FILTER_INPUT(INPUT_GET, 'unik2');
 }
 ?>
 
