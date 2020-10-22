@@ -2,7 +2,7 @@
 	include('conn.php');
 	session_start();
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	FILTER_INPUT(INPUT_SERVER, REQUEST_METHOD) == "POST") {
 
 	function check_input($data){
 		$data=trim($data);
@@ -11,19 +11,21 @@
 		return $data;
 	}
 
-	$email=check_input($_POST['email']);
-	$password=md5(check_input($_POST['password']));
+	$email=check_input(FILTER_INPUT(INPUT_POST, 'email'));
+	$password=md5(check_input(FILTER_INPUT(INPUT_POST, 'password')));
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  		$_SESSION['sign_msg'] = "Invalid email format";
+  		FILTER_INPUT(INPUT_SESSION, 'sign_msg') = "Invalid email format";
   		header('location:index.php#contact');
 	}
 
 	else{
 
-		$query=mysqli_query($conn,"select * from user where email='$email'");
+		$this->db->from('user');
+		$this->db->where('email', '$email');
+		$query= $this->db->get();
 		if(mysqli_num_rows($query)>0){
-			$_SESSION['sign_msg'] = "Email already taken";
+			FILTER_INPUT(INPUT_SESSION, 'sign_msg') = "Email already taken";
   			header('location:index.php#contact');
 		}
 		else{
@@ -47,7 +49,7 @@
 				<h2>Thank you for Registering.</h2>
 				<p>Your Account:</p>
 				<p>Email: ".$email."</p>
-				<p>Password: ".$_POST['password']."</p>
+				<p>Password: ".FILTER_INPUT(INPUT_POST, 'password')."</p>
 				<p>Please click the link below to activate your account.</p>
 				<h4><a href='http://localhost/suara_merdeka_v2/activate.php?uid=$uid&code=$code'>Activate My Account</h4>
 				</body>
@@ -61,7 +63,7 @@
 
 		mail($to,$subject,$message,$headers);
 
-		$_SESSION['sign_msg'] = "Verification code sent to your email.";
+		FILTER_INPUT(INPUT_SESSION, 'sign_msg') = "Verification code sent to your email.";
   		header('location:index.php#contact');
 
   		}
