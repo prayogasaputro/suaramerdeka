@@ -59,10 +59,10 @@ $bayar = "22000";
 } else if ($hasil == 9 or $hasil == 10){
   $bayar = "110000";
 } else {
-  echo "fail";
+  <?= "fail">?;
 }
 
-if (is_null($tgl)){
+if ($tgl->result_array()){
 
 mysqli_query($db,"UPDATE iklan2 SET tgl_invoice2='$tgl_invoice', bayar2='$bayar' WHERE unik2 = '$unik'");
 
