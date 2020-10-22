@@ -1,16 +1,20 @@
 <?php
-	include('conn.php');
+	include 'conn.php';
 	session_start();
 	if(isset(FILTER_INPUT(INPUT_GET, 'code'))){
 	FILTER_INPUT(INPUT_GET, 'uid');
 	FILTER_INPUT(INPUT_GET, 'code');
 
-	$query=mysqli_query($conn,"select * from user where userid='$user'");
+	$this->db->from('user');
+	$this->db->where('email', '$email');
+	$query=$thi->db->get();
 	$row=mysqli_fetch_array($query);
 
 	if($row['code']==$code){
 		//activate account
-		mysqli_query($conn,"update user set verify='1' where userid='$user'");
+		$this->db->set('verify', '1');
+		$this->db->where('userid', '$user');
+		$this->db->update('user');
 		?>
 		<p>Account Verified!</p>
 		<p><a href="index.php#portfolio">Login Now</a></p>
