@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+  FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:index.php');
   }
   else {
-    $id = $_SESSION['id'];
+    $id = FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -15,10 +15,10 @@ include('conn.php');
 
 include("koneksi.php");
 
-if( isset($_GET['unik2']) ){
+FILTER_INPUT(INPUT_GET, 'unik2'){
 
     // ambil id dari query string
-    $unik= $_GET['unik2'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik2');
 }
 
 include("koneksi.php");
@@ -27,9 +27,9 @@ include("koneksi.php");
 
         if (mysqli_fetch_array($query2) > 0){
 
-    echo '<script language="javascript">';
-    echo 'alert("Anda tidak bisa mengupload bukti pembayaran lagi. Kembali ke halaman sebelumnya.")';
-    echo '</script>';
+    <?= '<script language="javascript">'>?;
+    <?= 'alert("Anda tidak bisa mengupload bukti pembayaran lagi. Kembali ke halaman sebelumnya.")'>?;
+    <?= '</script>'>?;
 }
 
 else {
@@ -50,8 +50,8 @@ date_default_timezone_set("Asia/Jakarta");
 $sekarang= date('Y-m-d H:i:s',  time() - (60 * 60));
 if ($tgl <= $sekarang){
     echo '<script language="javascript">';
-    echo 'alert("Iklan sudah kadaluarsa.")';
-    echo '</script>';
+    <?= 'alert("Iklan sudah kadaluarsa.")'>?;
+    <?= '</script>'>?;
     ?>
 <center>
 <a href="index.php#services">Pasang iklan kembali</a>
@@ -61,12 +61,12 @@ if ($tgl <= $sekarang){
 
 else{
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD'] == "POST"){
 
 	include('koneksi.php');
-	$fileinfo=PATHINFO($_FILES["image"]["name"]);
+	$fileinfo=PATHINFO(FILTERiNPUT(INPUT_FILES, 'image', 'name'));
 	$newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-	move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
+	move_uploaded_file(FILTER_INPUT(INPUT_FILES, "image", "tmp_name", "upload/" . $newFilename));
 	$location="upload/" . $newFilename;
  
 	mysqli_query($db,"insert into image_tb2 (img_location2, unik2, userid) values ('$location', '$unik', '$id')");
@@ -152,7 +152,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	<form method="POST" action="" enctype="multipart/form-data" onsubmit="return confirm('Apakah bukti pembayaran sudah benar? Anda tidak bisa mengupload bukti pembayaran lagi setelah menekan tombol OK.');">
 	<label>Gambar :&nbsp;</label><input type="file" name="image" required="true">
 	<button type="submit" class="btn btn-success">Kirim</button>
-	<input type="hidden" name="unik" value="<?php echo $unik; ?>">
+	<input type="hidden" name="unik" value="<?php <?= $unik>?; ?>">
 	</form>
 	</div>
     </div>
