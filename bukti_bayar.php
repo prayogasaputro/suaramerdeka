@@ -1,6 +1,6 @@
 <?php
 
-include("koneksi.php");
+include "koneksi.php";
 
 if( isset(FILTER_INPUT(INPUT_GET, 'unik') )){
 
@@ -53,14 +53,19 @@ else{
 
 FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD' == "POST"){
 
-	include('koneksi.php');
+	include 'koneksi.php';
 	$fileinfo=PATHINFO(FILTER_INPUT(INPUT_FILES, "image", "name"));
 	$newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
 	move_uploaded_file(FILTER_INPUT(INPUT_FILES, "image", "tmp_name", "upload/" . $newFilename));
 	$location="upload/" . $newFilename;
  
-	mysqli_query($db,"insert into image_tb (img_location, unik) values ('$location', '$unik')");
-	mysqli_query($db,"UPDATE iklan SET status_iklan='Iklan sedang dalam proses pengecekan' WHERE unik='$unik'");
+	$data = array(
+	'img_location' => '$location',
+	'unik' => '$unik');
+	$this->db->insert('image_tb, $data);
+	$this->db->set('status_iklan', 'iklan sedang dalam proses pengecekan');
+	$this->db->where('unik', '$unik');
+	$this->db->update('iklan');
 	header('location:menunggu_status.php?unik='.$unik);
 }
 ?>
