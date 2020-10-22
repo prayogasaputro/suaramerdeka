@@ -17,7 +17,7 @@
 		<?php
 	}
 	else{
-		$_SESSION['sign_msg'] = "Something went wrong. Please sign up again.";
+		FILTER_INPUT(INPUT_SESSION, 'sign_msg') = "Something went wrong. Please sign up again.";
   		header('location:index.php#contact');
 	}
 	}
