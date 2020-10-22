@@ -13,7 +13,7 @@ FILTER_INPUT(INPUT_REQUEST, 'tanggal') <= $date){
 
 else {
 
-  include "koneksi.php";
+  include 'koneksi.php';
   FILTER_INPUT(INPUT_REQUEST,'fullName');
   FILTER_INPUT(INPUT_REQUEST, 'addressLine1');
   FILTER_INPUT(INPUT_REQUEST, 'email');
@@ -21,8 +21,12 @@ else {
   FILTER_INPUT(INPUT_REQUEST, 'tanggal');
   FILTER_INPUT(INPUT_REQUEST, 'unik');
 
-mysqli_query($db,"UPDATE iklan SET fullName='$nama', addressLine1='$alamat', email='$email', iklan='$iklan', tanggal='$tanggal' WHERE unik = '$unik'");
-
+$this->db->set('fullName', '$nama');
+$this->db->set('addressLine1', '$alamat');
+$this->db->set('iklan', '$iklan');
+$this->db->set('tanggal', '$tanggal');
+$this->db->where('unik', '$unik');
+$this->db->update('iklan');
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +117,7 @@ mysqli_query($db,"UPDATE iklan SET fullName='$nama', addressLine1='$alamat', ema
   <tbody>
     
     <?php
-include("koneksi.php");
+include 'koneksi.php';
         $sql = "SELECT * FROM iklan WHERE unik = '$unik'";
         $query = mysqli_query($db, $sql);
 
