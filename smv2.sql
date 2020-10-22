@@ -46,7 +46,7 @@ INSERT INTO "admin" ("username", "password") VALUES
 -- Table structure for table `iklan`
 --
 
-CREATE TABLE "iklan" (
+CREATE TABLE iklan (
   id int(255) NOT NULL,
   fullName varchar(255) NOT NULL,
   addressLine1 varchar(255) NOT NULL,
