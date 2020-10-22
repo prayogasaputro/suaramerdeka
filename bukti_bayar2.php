@@ -13,7 +13,7 @@ include('conn.php');
 
 <?php
 
-include("koneksi.php");
+include "koneksi.php";
 
 FILTER_INPUT(INPUT_GET, 'unik2'){
 
@@ -21,7 +21,7 @@ FILTER_INPUT(INPUT_GET, 'unik2'){
     $unik= FILTER_INPUT(INPUT_GET, 'unik2');
 }
 
-include("koneksi.php");
+include "koneksi.php";
         $sql2 = "SELECT * FROM image_tb2 WHERE unik2 = '$unik'";
         $query2 = mysqli_query($db, $sql2);
 
@@ -34,7 +34,7 @@ include("koneksi.php");
 
 else {
 
-include("koneksi.php");
+include "koneksi.php";
         $sql = "SELECT * FROM iklan2 WHERE unik2 = '$unik'";
         $query = mysqli_query($db, $sql);
 
@@ -63,7 +63,7 @@ else{
 
 FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD'] == "POST"){
 
-	include('koneksi.php');
+	include 'koneksi.php';
 	$fileinfo=PATHINFO(FILTERiNPUT(INPUT_FILES, 'image', 'name'));
 	$newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
 	move_uploaded_file(FILTER_INPUT(INPUT_FILES, "image", "tmp_name", "upload/" . $newFilename));
@@ -74,7 +74,9 @@ FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD'] == "POST"){
 	'unik2' => '$unik,'
 	'userid' => '$id');
 	$this->db->insert('image_tb2' , $data);
-	mysqli_query($db,"UPDATE iklan2 SET status_iklan2='Iklan sedang dalam proses pengecekan' WHERE unik2='$unik'");
+	$this->db->set('status_iklan2', 'iklan sedang dalam proses pengecekan');
+	$this->db->where('unik2', '$unik');
+	$this->db->update('iklan2');
 	header('location:index.php');
 }
 ?>
