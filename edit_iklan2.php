@@ -7,7 +7,7 @@ include('conn.php');
     header('location:index.php');
   }
   else {
-  	$id = $_SESSION['id'];
+  	$id = FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -22,7 +22,7 @@ FILTER_INPUT(INPUT_GET, 'unik2'){
 <?php
 include("koneksi.php");
         $sql = "SELECT * FROM iklan2 WHERE unik2 = '$unik'";
-        $query = mysqli_query($db, $sql);
+        $query = $sql->result_array ();
 
         while($query->resoult_array()){
 
