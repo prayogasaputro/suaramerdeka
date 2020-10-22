@@ -47,16 +47,16 @@ INSERT INTO "admin" ("username", "password") VALUES
 --
 
 CREATE TABLE "iklan" (
-  "id" int(255) NOT NULL,
-  "fullName" varchar(255) NOT NULL,
-  "addressLine1" varchar(255) NOT NULL,
-  "email" varchar(255) NOT NULL,
-  "iklan" varchar(320) NOT NULL,
-  "tanggal" date NOT NULL,
-  "unik" varchar(255) NOT NULL,
-  "status_iklan" varchar(255) NOT NULL,
-  "tgl_invoice" varchar(255) DEFAULT NULL,
-  "bayar" int(255) NOT NULL
+  id int(255) NOT NULL,
+  fullName varchar(255) NOT NULL,
+  addressLine1 varchar(255) NOT NULL,
+  email varchar(255) NOT NULL,
+  iklan varchar(320) NOT NULL,
+  tanggal date NOT NULL,
+  unik varchar(255) NOT NULL,
+  status_iklan varchar(255) NOT NULL,
+  tgl_invoice varchar(255) DEFAULT NULL,
+  bayar int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
