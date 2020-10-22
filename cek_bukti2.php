@@ -11,7 +11,7 @@ FILTER_INPUT(INPUT_SESSION, 'username') {
 FILTER_INPUT(INPUT_GET, 'unik2'){
 
     // ambil id dari query string
-    $unik= $_GET['unik2'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik2');
 }
 ?>
 
