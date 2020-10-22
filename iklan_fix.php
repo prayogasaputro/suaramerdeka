@@ -2,10 +2,10 @@
 
 include("koneksi.php");
 
-if( isset($_GET['unik']) ){
+FILTER_INPUT(INPUT_GET, 'unik' ){
 
     // ambil id dari query string
-    $unik= $_GET['unik'];
+    $unik= FILTER_INPUT(INPUT_GET, 'unik');
 }
 
 include("koneksi.php");
@@ -49,7 +49,7 @@ $bayar = "22000";
 } else if ($hasil == 9 or $hasil == 10){
   $bayar = "110000";
 } else {
-  echo "fail";
+  <?= "fail">?;
 }
 
 if (is_null($tgl)){
@@ -157,20 +157,20 @@ include("koneksi.php");
         $query = mysqli_query($db, $sql);
 
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['fullName']."</td>";
-            echo "<td>".$iklan['iklan']."</td>";
-            echo "<td>".$iklan['tanggal']."</td>";
-            echo "<td>".$iklan['tgl_invoice']."</td>";
-            echo "<td>".$iklan['bayar']."</td>";
+            <?= "<td>".$iklan['fullName']."</td>">?;
+            <?= "<td>".$iklan['iklan']."</td>">?;
+            <?= "<td>".$iklan['tanggal']."</td>">?;
+            <?= "<td>".$iklan['tgl_invoice']."</td>">?;
+            <?= "<td>".$iklan['bayar']."</td>">?;
 
-            echo "<td>";
-            echo "<a href='invoice.php?unik=".$iklan['unik']."' class='btn btn-warning' role='button' aria-pressed='true'>INVOICE</a></br/>";
-             echo "</br/><a href='bukti_bayar.php?unik=".$iklan['unik']."' class='btn btn-success' role='button' aria-pressed='true'>BUKTI BAYAR</a>";
-            echo "</td>";
+            <?= "<td>">?;
+            <?= "<a href='invoice.php?unik=".$iklan['unik']."' class='btn btn-warning' role='button' aria-pressed='true'>INVOICE</a></br/>">?;
+             <?= "</br/><a href='bukti_bayar.php?unik=".$iklan['unik']."' class='btn btn-success' role='button' aria-pressed='true'>BUKTI BAYAR</a>">?;
+            <?= "</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
