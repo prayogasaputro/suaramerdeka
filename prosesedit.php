@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Jakarta");
 $date = date("Y-m-d");
 
-if($_REQUEST['tanggal'] <= $date){
+FILTER_INPUT(INPUT_REQUEST, 'tanggal') <= $date){
     <?= '<script language="javascript">'>?;
     <?= 'alert("Masukkan tanggal dengan benar. Kembali ke halaman sebelumnya untuk mengedit.")'>?;
     <?= '</script>'>?;
