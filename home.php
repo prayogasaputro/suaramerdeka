@@ -3,11 +3,11 @@
 <?php
 include('conn.php');
 
-  if(!isset($_SESSION['id'])){
+ FILTER_INPUT(INPUT_SESSION, 'id'){
     header('location:index.php');
   }
   else {
-  	$id = $_SESSION['id'];
+  	$id = FILTER_INPUT(INPUT_SESSION, 'id');
   }
 ?>
 
@@ -143,13 +143,13 @@ include("koneksi.php");
         $sql = "SELECT * FROM iklan2 WHERE NOT status_iklan2 = '$kirim' AND userid='$id'";
         $query = mysqli_query($db, $sql);
         while($iklan = mysqli_fetch_array($query)){
-        echo "<tr>";
+        <?= "<tr>">?;
 
-            echo "<td>".$iklan['iklan2']."</td>";
-            echo "<td>".$iklan['tanggal2']."</td>";
-            echo "<td>".$iklan['status_iklan2']."</td>";
+            <?= "<td>".$iklan['iklan2']."</td>">?;
+            <?= "<td>".$iklan['tanggal2']."</td>">?;
+            <?= "<td>".$iklan['status_iklan2']."</td>">?;
 
-            echo "</tr>";
+            <?= "</tr>">?;
         }
     ?>
 
