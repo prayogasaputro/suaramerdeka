@@ -29,7 +29,7 @@ header.masthead {
     }
   }
 
-  @include media-breakpoint-up(xl) {
+  include media-breakpoint-up(xl) {
     h1 {
       font-size: 3.5rem;
     }
