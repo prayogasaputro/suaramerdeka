@@ -19,6 +19,8 @@
   			header('location:index.php');
 		}
 		else{
+			$this->db->from('user');
+			$this->db->where('email', '$email', 'password', '$password');
 			$query=mysqli_query($conn,"select * from user where email='$email' and password='$password'");
 			if(mysqli_num_rows($query)==0){
 				FILTER_INPUT(INPUT_SESSION, 'log_msg') = "User not found";
