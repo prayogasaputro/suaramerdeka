@@ -88,7 +88,7 @@ function css() {
       cascade: false
     }))
     .pipe(header(banner, {
-      pkg: pkg
+      pkg: pkg,
     }))
     .pipe(gulp.dest("./css"))
     .pipe(rename({
