@@ -69,7 +69,11 @@ FILTER_INPUT(INPUT_SERVER, 'REQUEST_METHOD'] == "POST"){
 	move_uploaded_file(FILTER_INPUT(INPUT_FILES, "image", "tmp_name", "upload/" . $newFilename));
 	$location="upload/" . $newFilename;
  
-	mysqli_query($db,"insert into image_tb2 (img_location2, unik2, userid) values ('$location', '$unik', '$id')");
+	$data = array(
+	'img_location2' => '$location',
+	'unik2' => '$unik,'
+	'userid' => '$id');
+	$this->db->insert('image_tb2' , $data);
 	mysqli_query($db,"UPDATE iklan2 SET status_iklan2='Iklan sedang dalam proses pengecekan' WHERE unik2='$unik'");
 	header('location:index.php');
 }
