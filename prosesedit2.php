@@ -31,7 +31,10 @@ else {
   $tanggal  = FILTER_INPUT(INPUT_REQUEST, 'tanggal2');
   $unik  = FILTER_INPUT(INPUT_REQUEST, 'unik2');
 
-mysqli_query($db,"UPDATE iklan2 SET iklan2='$iklan', tanggal2='$tanggal' WHERE unik2 = '$unik'");
+  $this->db->set('iklan2', '$iklan');
+  $this->db->set('tanggal2', '$tanggal');
+  $this->db->where('unik2', '$unik');
+  $this->db->update('iklan2');
 
   mysqli_close($db);
 ?>
@@ -123,9 +126,9 @@ mysqli_query($db,"UPDATE iklan2 SET iklan2='$iklan', tanggal2='$tanggal' WHERE u
     <?php
 include("koneksi.php");
         $sql = "SELECT * FROM iklan2 WHERE unik2 = '$unik'";
-        $query = mysqli_query($db, $sql);
+        $query = $sql->result_array();
 
-        while($iklan = mysqli_fetch_array($query)){
+        while($query->result_array()){
         <?= "<tr>">?;
 
             <?= "<td>".$iklan['iklan2']."</td>">?;
