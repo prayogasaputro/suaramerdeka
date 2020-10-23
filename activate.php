@@ -8,7 +8,7 @@
 	$this->db->from('user');
 	$this->db->where('email', '$email');
 	$query=$thi->db->get();
-	$row=mysqli_fetch_array($query);
+	$row=($query->resoult_array());
 
 	if($row['code']==$code){
 		//activate account
