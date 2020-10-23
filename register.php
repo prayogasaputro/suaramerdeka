@@ -24,7 +24,7 @@
 		$this->db->from('user');
 		$this->db->where('email', '$email');
 		$query= $this->db->get();
-		if(mysqli_num_rows($query)>0){
+		if($query->result_array()>0){
 			FILTER_INPUT(INPUT_SESSION, 'sign_msg') = "Email already taken";
   			header('location:index.php#contact');
 		}
@@ -32,8 +32,12 @@
 		//depends on how you set your verification code
 		$set='123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$code=substr(str_shuffle($set), 0, 12);
-
-		mysqli_query($conn,"insert into user (email, password, code) values ('$email', '$password', '$code')");
+			
+		$data = array(
+		'email' => '$email',
+		'password' => '$password',
+		'code' => '$code');
+		$this->db->insert('user', $data);
 		$uid=mysqli_insert_id($conn);
 		//default value for our verify is 0, means it is unverified
 
