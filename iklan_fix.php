@@ -10,7 +10,7 @@ FILTER_INPUT(INPUT_GET, 'unik' ){
 
 include("koneksi.php");
 $sql = "SELECT * FROM iklan WHERE unik = '$unik'";
-        $query = mysqli_query($db, $sql);
+        $query = $sql->result_array();
 
         while($iklan = mysqli_fetch_array($query)){
 
