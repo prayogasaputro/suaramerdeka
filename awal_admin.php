@@ -96,8 +96,8 @@ FILTER_INPUT(INPUT_SESSION,'username') {
     $kirim = "Kirim bukti pembayaran terlebih dahulu";
 include 'koneksi.php';
         $sql = "SELECT * FROM iklan WHERE NOT status_iklan = '$kirim'";
-        $query = mysqli_query($db, $sql);
-        while($iklan = mysqli_fetch_array($query)){
+        $query = $sql->result_array();
+        while($query->result_array()){
         <?= "<tr>">?;
 
             <?= "<td>".$iklan['iklan']."</td>">?;
@@ -142,8 +142,8 @@ include 'koneksi.php';
     $kirim = "Kirim bukti pembayaran terlebih dahulu";
 include("koneksi.php");
         $sql = "SELECT * FROM user";
-        $query = mysqli_query($db, $sql);
-        while($user = mysqli_fetch_array($query)){
+        $query = $sql->result_array();
+        while($query->result_array()){
         <?= "<tr>">?;
 
             <?= "<td>".$user['email']."</td>">?;
