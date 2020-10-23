@@ -23,9 +23,9 @@ FILTER_INPUT(INPUT_GET, 'unik2'){
 
 include "koneksi.php";
         $sql2 = "SELECT * FROM image_tb2 WHERE unik2 = '$unik'";
-        $query2 = mysqli_query($db, $sql2);
+        $query2 = $sql2->result_array();
 
-        if (mysqli_fetch_array($query2) > 0){
+        if ($query2->result_array() > 0){
 
     <?= '<script language="javascript">'>?;
     <?= 'alert("Anda tidak bisa mengupload bukti pembayaran lagi. Kembali ke halaman sebelumnya.")'>?;
@@ -36,9 +36,9 @@ else {
 
 include "koneksi.php";
         $sql = "SELECT * FROM iklan2 WHERE unik2 = '$unik'";
-        $query = mysqli_query($db, $sql);
+        $query = $sql->result_array();
 
-        while($iklan = mysqli_fetch_array($query)){
+        while($query->result_array()){
 
             $ik= $iklan['iklan2'];
             $tanggal= $iklan['tanggal2'];
